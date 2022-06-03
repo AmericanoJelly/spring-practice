@@ -15,34 +15,57 @@ import com.douzone.guestbook.vo.GuestBookVo;
 
 @Controller
 public class GuestbookController {
-	
-	@Autowired
-	private GuestbookRepository  guestbookRepository;
 
-	@RequestMapping(value="", method = RequestMethod.GET)
-	public String index(Model model){
+	@Autowired
+	private GuestbookRepository guestbookRepository;
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String index(Model model) {
 		List<GuestBookVo> list = guestbookRepository.findAll();
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/index.jsp";
 	}
-	//value="" 비우는건 GET일때만 가능
-	
-	@RequestMapping(value="/add", method = RequestMethod.POST)
-	public String index(GuestBookVo vo){
+	// value="" 비우는건 GET일때만 가능
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String index(GuestBookVo vo) {
 		guestbookRepository.insert(vo);
 		return "redirect:/";
 	}
-	
-	@RequestMapping(value="/delete/{no}", method = RequestMethod.GET)
-	public String delete(@PathVariable("no") Long no){
+
+	@RequestMapping(value = "/delete/{no}", method = RequestMethod.GET)
+	public String delete(@PathVariable("no") Long no) {
 		return "/WEB-INF/views/delete.jsp";
 	}
+
+
 	
-	@RequestMapping(value = "/delete/{no}", method=RequestMethod.POST)
+	@RequestMapping(value = "/delete/{no}", method = RequestMethod.POST)
 	public String delete(
-			@PathVariable("no") Long no,
-			@RequestParam(value="password", required=true, defaultValue="") String password){
-		guestbookRepository.delete(no, password);
+		@PathVariable("no") Long no,
+		@RequestParam(value = "password", required = true, defaultValue = "") String password) {
+	guestbookRepository.delete(no, password);
 		return "redirect:/";
 	}
+	
+	/* vo로 받아오기
+	 * @RequestMapping(value = "/delete/{no}", method = RequestMethod.POST) public
+	 * String delete(@PathVariable("no") Long no, GuestBookVo vo) {
+	 * guestbookRepository.delete(vo); return "redirect:/"; }
+	 */
+	
+	/* vo로 객체 생성해서 받아오기
+	 * @RequestMapping(value="/delete/{no}", method=RequestMethod.POST) public
+	 * String delete(@PathVariable("no") Long no,
+	 * 
+	 * @RequestParam(value="password", required=true, defaultValue="") String
+	 * password) { 
+	 * GuestBookVo vo = new GuestBookVo(); 
+	 * vo.setNo(no);
+	 * vo.setPassword(password);
+	 * 
+	 * guestbookRepository.delete(vo); return "redirect:/";
+	 *  }
+	 */
+	 
 }
