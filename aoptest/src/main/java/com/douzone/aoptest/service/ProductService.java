@@ -7,6 +7,7 @@ import com.douzone.aoptest.vo.ProductVo;
 @Service
 public class ProductService {
 	public ProductVo find(String name) {
+		System.out.println("[ProductService] findeing....");
 		return new ProductVo(name);
 	}
 }
