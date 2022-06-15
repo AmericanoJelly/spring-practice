@@ -4,7 +4,7 @@ import java.util.List;
 
 public class User {
 	private Long no = 0L;
-	private String name = "마이콜";
+	private String name = "김서인";
 	private Friend friend = null;
 	private List<String> friends;
 	

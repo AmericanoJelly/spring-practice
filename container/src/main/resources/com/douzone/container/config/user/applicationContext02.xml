@@ -21,13 +21,13 @@
 
 	<!-- 파라미터 1개인 생성자로 빈 생성하기-->
 	<bean id="user2" name="usr2" class="com.douzone.container.user.User">
-		<constructor-arg value="또치"/>
+		<constructor-arg value="김채원은 신"/>
 	</bean>
 
 	<!-- 파라미터 2개인 생성자로 빈 생성하기1-->
 	<bean id="user3" class="com.douzone.container.user.User">
 		<constructor-arg value="3"/>
-		<constructor-arg value="도우너"/>
+		<constructor-arg value="마라탕"/>
 	</bean>
 
 	<!-- 파라미터 2개인 생성자로 빈 생성하기2-->
